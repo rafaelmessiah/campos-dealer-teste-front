@@ -1,0 +1,64 @@
+<section class="root-content">
+  <div class="container">
+    <h1 class="title">
+      Vendas
+    </h1>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Pesquisar</mat-label>
+      <input matInput type="text">
+      <button mat-icon-button matSuffix>
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <table mat-table [dataSource]="vendas">
+      <!-- Id -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Numero da Venda</th>
+        <td mat-cell *matCellDef="let venda">{{venda.idVenda}}</td>
+      </ng-container>
+
+      <!-- Produto -->
+      <ng-container matColumnDef="produto">
+        <th mat-header-cell *matHeaderCellDef>Produto</th>
+        <td mat-cell *matCellDef="let venda">{{venda.produto.dscProduto}}</td>
+      </ng-container>
+
+      <!-- Quantidade -->
+      <ng-container matColumnDef="quantidade">
+        <th mat-header-cell *matHeaderCellDef>Qtde.</th>
+        <td mat-cell *matCellDef="let venda">{{venda.qtdVenda}}</td>
+      </ng-container>
+
+      <!-- Valor Unitário -->
+      <ng-container matColumnDef="vlrUnitario">
+        <th mat-header-cell *matHeaderCellDef>Valor do Produto</th>
+        <td mat-cell *matCellDef="let venda">{{venda.vlrUnitarioVenda | currency}}</td>
+      </ng-container>
+      
+      <!-- Valor Total -->
+      <ng-container matColumnDef="vlrTotal">
+        <th mat-header-cell *matHeaderCellDef>Valor Total</th>
+        <td mat-cell *matCellDef="let venda">{{venda.vlrTotalVenda | currency}}</td>
+      </ng-container>
+
+      <!-- Cliente -->
+      <ng-container matColumnDef="cliente">
+        <th mat-header-cell *matHeaderCellDef>Cliente</th>
+        <td mat-cell *matCellDef="let venda">{{venda.cliente.nmCliente}}</td>
+      </ng-container>
+
+      <!-- Data Venda -->
+      <ng-container matColumnDef="dthVenda">
+        <th mat-header-cell *matHeaderCellDef>Data da Venda</th>
+        <td mat-cell *matCellDef="let venda">{{venda.dthVenda}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="colunas"></tr>
+      <tr mat-row *matRowDef="let row; columns: colunas;"></tr>
+
+    </table>
+
+  </div>
+</section>

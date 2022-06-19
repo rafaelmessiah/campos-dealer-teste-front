@@ -4,6 +4,12 @@
     width: 970px;
     height: max-content;
 
-    margin: 20px;
-}
+    display: flex;
+    flex-direction: column;
 
+    margin: 20px;
+
+    >h1.title{
+        font: 20px;
+    }
+}
