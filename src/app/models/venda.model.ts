@@ -1,5 +1,5 @@
-import { Cliente } from "./cliente";
-import { Produto } from './produto';
+import { Cliente } from "./cliente.model";
+import { Produto } from './produto.model';
 
 export interface Venda {
     idVenda: number,

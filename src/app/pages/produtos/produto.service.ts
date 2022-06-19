@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, take, tap } from 'rxjs';
-import { Produto } from '../../models/produto';
+import { Produto } from '../../models/produto.model';
 import { environment } from '../../../environments/environment';
-import { ProdutoDto } from '../../models/dto/produtoDto';
+import { ProdutoDto } from '../../models/dto/produto-dto.model';
 
 const API_URL = environment.apiUrl;
 
@@ -57,11 +57,10 @@ export class ProdutoService {
     )
     .subscribe()
   }
-
+  
   /**
-   * Métodos Privados
+   * Métodos Publicos
    */
-
   public listar(){
     return this._listar();
   }

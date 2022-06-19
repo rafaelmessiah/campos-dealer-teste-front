@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Produto } from 'src/app/models/produto';
+import { Produto } from 'src/app/models/produto.model';
 import { ProdutoService } from './produto.service';
 import { tap } from 'rxjs';
 
@@ -19,7 +19,6 @@ export class ProdutosComponent implements OnInit {
   constructor(public produtoService: ProdutoService) { }
 
   ngOnInit() {
-
     //Subscribe na Lista de Produtos
     this.produtoService.produtos$
     .pipe(
