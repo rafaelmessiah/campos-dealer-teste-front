@@ -38,7 +38,7 @@ export class VendasComponent implements OnInit {
     }
   ]
 
-  public colunas: string[] =['id', 'produto', 'quantidade', 'vlrUnitario', 'vlrTotal', 'cliente', 'dthVenda']
+  public colunas: string[] =['id', 'cliente', 'produto', 'quantidade', 'vlrUnitario', 'vlrTotal', 'dthVenda']
 
   constructor() { }
 
