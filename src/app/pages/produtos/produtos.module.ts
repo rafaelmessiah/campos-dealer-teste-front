@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
+import { DetalheComponent } from './detalhe/detalhe.component';
 
 @NgModule({
   imports: [
@@ -18,9 +19,13 @@ import { MatTableModule } from '@angular/material/table';
       {
         path:'',
         component:ProdutosComponent
+      },
+      {
+        path:':id',
+        component:DetalheComponent
       }
     ])
   ],
-  declarations: [ProdutosComponent]
+  declarations: [ProdutosComponent, DetalheComponent]
 })
 export class ProdutosModule { }

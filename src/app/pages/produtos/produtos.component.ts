@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Produto } from 'src/app/models/produto';
+import { ProdutoService } from './produto.service';
+import { tap } from 'rxjs';
 
+@UntilDestroy()
 @Component({
   selector: 'app-produtos',
   templateUrl: './produtos.component.html',
@@ -8,29 +12,22 @@ import { Produto } from 'src/app/models/produto';
 })
 export class ProdutosComponent implements OnInit {
 
-  public produtos: Produto[] = [
-    {
-      idProduto: 1,
-      dscProduto: 'Teste 1',
-      vlrUnitario: 2000.00
-    },
-    {
-      idProduto: 2,
-      dscProduto: 'Teste 2',
-      vlrUnitario: 500.00
-    },
-    {
-      idProduto: 3,
-      dscProduto: 'Teste 3',
-      vlrUnitario: 1000.00
-    },
-  ]
+  public produtos: Produto[] = []
 
   public colunas: string[] = ['id', 'descricao', 'valor']
 
-  constructor() { }
+  constructor(public produtoService: ProdutoService) { }
 
   ngOnInit() {
+
+    //Subscribe na Lista de Produtos
+    this.produtoService.produtos$
+    .pipe(
+      untilDestroyed(this)
+    )
+    .subscribe(produtos => this.produtos = produtos);
+
+    this.produtoService.listar();
   }
 
 }

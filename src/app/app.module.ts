@@ -10,6 +10,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 
 import ptBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 registerLocaleData(ptBr);
 
@@ -23,7 +24,8 @@ registerLocaleData(ptBr);
     BrowserAnimationsModule,
     LayoutModule,
     ComponentsModule,
-    MatSidenavModule
+    MatSidenavModule,
+    HttpClientModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue:'pt' },
