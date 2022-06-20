@@ -7,6 +7,6 @@ export interface Venda {
     vlrUnitarioVenda: number,
     dthVenda: Date,
     vlrTotalVenda: number,
-    cliente: Cliente,
-    produto: Produto
+    Cliente: Cliente,
+    Produto: Produto
 }
