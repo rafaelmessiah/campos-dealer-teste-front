@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { VendaCadastrarComponent } from './venda-cadastrar/venda-cadastrar.component';
 import { VendaEditarComponent } from './venda-editar/venda-editar.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { VendaEditarComponent } from './venda-editar/venda-editar.component';
     MatButtonModule,
     MatTableModule,
     MatSelectModule,
+    MatPaginatorModule,
     ReactiveFormsModule,
     RouterModule.forChild([
       {

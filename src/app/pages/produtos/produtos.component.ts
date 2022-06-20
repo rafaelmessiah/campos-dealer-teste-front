@@ -5,6 +5,7 @@ import { ProdutoService } from './produto.service';
 import { tap } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ThisReceiver } from '@angular/compiler';
+import { Router } from '@angular/router';
 
 @UntilDestroy()
 @Component({
@@ -16,10 +17,11 @@ export class ProdutosComponent implements OnInit {
 
   public produtos: Produto[] = []
   public searchForm: FormGroup;
-  public colunas: string[] = ['id', 'descricao', 'valor']
+  public colunas: string[] = ['id', 'descricao', 'valor', 'actions']
 
   constructor(public produtoService: ProdutoService,
-              public formBuilder: FormBuilder) {
+              public formBuilder: FormBuilder,
+              public router: Router) {
                 this.searchForm = this.formBuilder.group({
                   searchString:['']
                 })
@@ -47,5 +49,9 @@ export class ProdutosComponent implements OnInit {
     else{
       this.produtoService.listar().subscribe();
     }
+  }
+
+  toCadastrar(){
+    this.router.navigate(['/produtos/cadastrar'])
   }
 }

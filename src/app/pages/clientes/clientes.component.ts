@@ -3,6 +3,7 @@ import { Cliente } from '../../models/cliente.model';
 import { ClienteService } from './cliente.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @UntilDestroy()
 @Component({
@@ -17,7 +18,8 @@ export class ClientesComponent implements OnInit {
   public colunas: string[] = ['id', 'nome', 'cidade'];
 
   constructor(public clienteService: ClienteService,
-              public formBuilder: FormBuilder) {
+              public formBuilder: FormBuilder,
+              public router: Router) {
                 this.searchForm = this.formBuilder.group({
                   searchString:['']
                 });
@@ -45,5 +47,9 @@ export class ClientesComponent implements OnInit {
     else{
       this.clienteService.listar().subscribe();
     }
+  }
+
+  toCadastrar(){
+    this.router.navigate(['/clientes/cadastrar'])
   }
 }

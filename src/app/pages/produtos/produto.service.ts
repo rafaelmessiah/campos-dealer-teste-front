@@ -65,4 +65,12 @@ export class ProdutoService {
       tap(produto => this._produto.next(produto))
     )
   }
+
+  public remover(id: number,){
+    return this.http.delete<boolean>(`${API_URL}/produto/${id}`)
+    .pipe(
+      take(1),
+      tap(() => this._produtos.getValue().filter(p => p.idProduto != id))
+    )
+  }
 }

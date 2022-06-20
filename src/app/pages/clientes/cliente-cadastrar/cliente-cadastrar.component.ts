@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ClienteService } from '../cliente.service';
 import { ClienteDto } from '../../../models/dto/cliente-dto.model';
 
@@ -14,7 +14,8 @@ export class ClienteCadastrarComponent implements OnInit {
   public cadastrarClienteForm: FormGroup;
 
   constructor(private clienteService: ClienteService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private router: Router) {
                 this.cadastrarClienteForm = this.formBuilder.group({
                   nome:['', [Validators.required]],
                   cidade:['', [Validators.required]]
@@ -35,7 +36,7 @@ export class ClienteCadastrarComponent implements OnInit {
   public cadastrar(clienteDto: ClienteDto){
     this.clienteService.cadastrar(clienteDto)
     .subscribe({
-      next: cliente => console.log('Cliente cadastrado'),
+      next: () => this.router.navigate(['/clientes']),
       error: err => console.log('Houve um erro ao cadastrar um Cliente')
     })
   }

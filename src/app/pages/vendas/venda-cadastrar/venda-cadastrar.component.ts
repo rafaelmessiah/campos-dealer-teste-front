@@ -7,6 +7,7 @@ import { ProdutoService } from '../../produtos/produto.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ClienteService } from '../../clientes/cliente.service';
 import { VendaDto } from '../../../models/dto/venda-dto.model';
+import { Router } from '@angular/router';
 
 @UntilDestroy()
 @Component({
@@ -23,6 +24,7 @@ export class VendaCadastrarComponent implements OnInit {
   constructor(private vendaService: VendaService,
               private produtoService: ProdutoService,
               private clienteService: ClienteService,
+              private router: Router,
               private formBuilder: FormBuilder) {
                 this.cadastrarVendaForm = this.formBuilder.group({
                   idCliente:['', [Validators.required]],
@@ -62,7 +64,7 @@ export class VendaCadastrarComponent implements OnInit {
   public cadastrar(vendaDto: VendaDto){
     this.vendaService.cadastrar(vendaDto)
     .subscribe({
-      next: cliente => console.log('Cliente cadastrado'),
+      next: () => this.router.navigate(['/vendas']),
       error: err => console.log('Houve um erro ao cadastrar um Cliente')
     })
   }

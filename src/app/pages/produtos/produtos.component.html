@@ -4,6 +4,10 @@
       Produtos
     </h1>
 
+    <button mat-raised-button color="primary" class="btn" (click)="toCadastrar()">
+      Adicionar
+    </button>
+
     <form [formGroup]="searchForm">
       <mat-form-field appearance="fill" style="width: 100%;">
         <mat-label>Pesquisar</mat-label>
@@ -14,7 +18,6 @@
       </mat-form-field>
     </form>
     
-
     <table mat-table [dataSource]="produtos">
       <!-- Id -->
       <ng-container matColumnDef="id">

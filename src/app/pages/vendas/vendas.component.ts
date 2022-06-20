@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Venda } from 'src/app/models/venda.model';
 import { VendaService } from './venda.service';
@@ -14,9 +16,11 @@ export class VendasComponent implements OnInit {
   public vendas: Venda[] = []
   public searchForm: FormGroup;
   public colunas: string[] =['id', 'cliente', 'produto', 'quantidade', 'vlrUnitario', 'vlrTotal', 'dthVenda']
+  public dataSource = new MatTableDataSource
 
   constructor(public vendaService: VendaService,
-              public formBuilder: FormBuilder) {
+              public formBuilder: FormBuilder,
+              public router: Router) {
                 this.searchForm = this.formBuilder.group({
                   searchString:['']
                 })
@@ -46,4 +50,7 @@ export class VendasComponent implements OnInit {
     }
   }
 
+  toCadastrar(){
+    this.router.navigate(['/vendas/cadastrar'])
+  }
 }

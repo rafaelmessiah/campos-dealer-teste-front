@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProdutoService } from '../produto.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { ProdutoDto } from '../../../models/dto/produto-dto.model';
@@ -17,6 +17,7 @@ export class ProdutoCadastrarComponent implements OnInit {
 
   constructor(private produtoService: ProdutoService,
               private formBuilder: FormBuilder,
+              private router: Router,
               private route: ActivatedRoute) {
                 this.cadastrarProdutoForm = this.formBuilder.group({
                   descricao:['', [Validators.required]],
@@ -38,7 +39,7 @@ export class ProdutoCadastrarComponent implements OnInit {
   public cadastrar(produtoDto: ProdutoDto){
     this.produtoService.cadastrar(produtoDto)
     .subscribe({
-      next: produto => console.log('produto Cadastrado'),
+      next: () => this.router.navigate(['/produtos']),
       error: err => console.log('erro ao cadastra produto')
     })
   }

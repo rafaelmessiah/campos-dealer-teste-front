@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'vendas',
     loadChildren: () => import('./pages/vendas/vendas.module').then(m => m.VendasModule)
   },
+  {
+    path: '**',
+    redirectTo: '/home' //Error 404 - Page not found
+  }
   
 ];
 
