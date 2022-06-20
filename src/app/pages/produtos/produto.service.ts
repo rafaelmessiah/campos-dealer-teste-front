@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, take, tap } from 'rxjs';
 import { Produto } from '../../models/produto.model';
 import { environment } from '../../../environments/environment';
 import { ProdutoDto } from '../../models/dto/produto-dto.model';
+import { Params } from '@angular/router';
 
 const API_URL = environment.apiUrl;
 
@@ -25,6 +26,17 @@ export class ProdutoService {
    */
   public listar(){
     return this.http.get<Produto[]>(`${API_URL}/produto`)
+    .pipe(
+      take(1),
+      tap(produtos => this._produtos.next(produtos))
+    )
+  }
+
+  public buscar(searchString: string){
+    const params = new HttpParams()
+    .set('searchString', searchString)
+
+    return this.http.get<Produto[]>(`${API_URL}/produto`, {params})
     .pipe(
       take(1),
       tap(produtos => this._produtos.next(produtos))
