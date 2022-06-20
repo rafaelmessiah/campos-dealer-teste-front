@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, take, tap } from 'rxjs';
 import { Venda } from '../../models/venda.model';
 import { VendaDto } from 'src/app/models/dto/venda-dto.model';
@@ -40,6 +40,17 @@ export class VendaService {
     .pipe(
       take(1),
       tap(venda => this._venda.next(venda))
+    )
+  }
+
+  public buscar(searchString: string){
+    const params = new HttpParams()
+    .set('searchString', searchString)
+    
+    return this.http.get<Venda[]>(`${API_URL}/venda`, { params })
+    .pipe(
+      take(1),
+      tap(vendas => this._vendas.next(vendas))
     )
   }
 
