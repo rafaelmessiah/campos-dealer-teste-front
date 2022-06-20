@@ -25,7 +25,7 @@ export class ClientesComponent implements OnInit {
     )
     .subscribe(clientes => this.clientes = clientes);
 
-    this.clienteService.listar()
+    this.clienteService.listar().subscribe();
   }
 
 }

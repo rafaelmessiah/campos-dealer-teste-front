@@ -17,7 +17,6 @@ export class ProdutoEditarComponent implements OnInit {
 
   public produto: Produto | null = null;
   public editarForm: FormGroup;
-  public isEdicao: boolean = false;
 
   constructor(private produtoService: ProdutoService,
               private formBuilder: FormBuilder,

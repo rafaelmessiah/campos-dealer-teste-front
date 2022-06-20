@@ -21,50 +21,34 @@ constructor(private http: HttpClient) { }
   private _cliente = new BehaviorSubject<Cliente | null>(null)
   public cliente$ = this._cliente.asObservable();
 
-
-  /**
-   * Métodos Privados
-   */
-  private _listar(){
-    this.http.get<Cliente[]>(`${API_URL}/cliente`)
+  public listar(){
+    return this.http.get<Cliente[]>(`${API_URL}/cliente`)
     .pipe(
       take(1),
       tap(clientes => this._clientes.next(clientes))
     )
-    .subscribe()
   }
 
-  private _cadastrar(clienteDto: ClienteDto){
-    this.http.post<Cliente>(`${API_URL}/cliente`, clienteDto)
+  public cadastrar(clienteDto: ClienteDto){
+    return this.http.post<Cliente>(`${API_URL}/cliente`, clienteDto)
     .pipe(
       take(1),
     )
-    .subscribe()
   }
 
-  private _obter(id: number){
-    this.http.get<Cliente>(`${API_URL}/cliente/${id}`)
+  public obter(id: number){
+    return this.http.get<Cliente>(`${API_URL}/cliente/${id}`)
     .pipe(
       take(1),
       tap(cliente => this._cliente.next(cliente))
     )
-    .subscribe()
   }
 
-  private _editar(id: number, clienteDto: ClienteDto){
-    this.http.put<Cliente>(`${API_URL}/cliente/${id}`, clienteDto)
+  public editar(id: number, clienteDto: ClienteDto){
+    return this.http.put<Cliente>(`${API_URL}/cliente/${id}`, clienteDto)
     .pipe(
       take(1),
-      tap(produto => this._cliente.next(produto))
+      tap(cliente => this._cliente.next(cliente))
     )
-    .subscribe()
   }
-
-  /**
-   * Métodos Publicos
-   */
-  public listar(){
-    return this._listar();
-  }
-
 }

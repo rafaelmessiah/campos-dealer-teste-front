@@ -1,19 +1,19 @@
 <section class="root-content">
   <div class="container">
     <h1 class="title">
-      Produto Nº: {{produto?.idProduto}}
+      Cliente Nº : {{cliente?.idCliente}}
     </h1>
     
-    <form [formGroup]="editarForm" (submit)="onSubmit()">
+    <form [formGroup]="editarClienteForm" (submit)="onSubmit()">
       <div class="form-container">
         <mat-form-field appearance="outline" class="flex-item">
-          <mat-label>Descrição</mat-label>
-          <input matInput type="text" formControlName="descricao">
+          <mat-label>Nome do Cliente</mat-label>
+          <input matInput type="text" formControlName="nome">
         </mat-form-field>
         
         <mat-form-field appearance="outline" class="flex-item">
-          <mat-label>Valor Unitario</mat-label>
-          <input matInput formControlName="valorUnitario">
+          <mat-label>Cidade do Cliente</mat-label>
+          <input matInput formControlName="cidade">
         </mat-form-field>
       </div>
     </form>
