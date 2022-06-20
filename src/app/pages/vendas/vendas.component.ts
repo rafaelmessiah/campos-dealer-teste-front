@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Venda } from 'src/app/models/venda.model';
 import { VendaService } from './venda.service';
+import { DialogService } from '../../components/dialog.service';
+import { switchMap, tap } from 'rxjs';
 @UntilDestroy()
 @Component({
   selector: 'app-vendas',
@@ -19,6 +21,7 @@ export class VendasComponent implements OnInit {
 
   constructor(public vendaService: VendaService,
               public formBuilder: FormBuilder,
+              public dialogService: DialogService,
               public router: Router) {
                 this.searchForm = this.formBuilder.group({
                   searchString:['']
@@ -58,7 +61,18 @@ export class VendasComponent implements OnInit {
   }
 
   public remover(id: number) {
-    this.vendaService.remover(id)
+    this.dialogService.confirmDialog({
+      titulo: 'Atenção',
+      mensagem: 'Tem certeza que quer excluir essa venda?'
+    })
+    .pipe(
+      untilDestroyed(this),
+      tap(res => {
+        if(res){
+          this.vendaService.remover(id).subscribe();
+        }
+      })
+    )
     .subscribe();
   }
 }

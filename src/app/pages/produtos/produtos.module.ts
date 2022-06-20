@@ -9,6 +9,7 @@ import { MatTableModule } from '@angular/material/table';
 import { ProdutoEditarComponent } from './produto-editar/produto-editar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProdutoCadastrarComponent } from './produto-cadastrar/produto-cadastrar.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { ProdutoCadastrarComponent } from './produto-cadastrar/produto-cadastrar
     MatButtonModule,
     MatTableModule,
     ReactiveFormsModule,
+    MatDialogModule,
     RouterModule.forChild([
       {
         path:'',

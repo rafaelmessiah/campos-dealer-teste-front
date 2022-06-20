@@ -1,16 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SidenavComponent } from './sidenav/sidenav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  declarations: [SidenavComponent],
+  declarations: [ConfirmDialogComponent],
   imports: [
     CommonModule,
+    MatDialogModule,
+    MatButtonModule,
     MatSidenavModule
   ],
   exports:[
-    SidenavComponent
+    ConfirmDialogComponent
   ]
 })
 export class ComponentsModule { }

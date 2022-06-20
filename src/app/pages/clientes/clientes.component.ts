@@ -4,6 +4,8 @@ import { ClienteService } from './cliente.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DialogService } from 'src/app/components/dialog.service';
+import { tap } from 'rxjs';
 
 @UntilDestroy()
 @Component({
@@ -19,6 +21,7 @@ export class ClientesComponent implements OnInit {
 
   constructor(public clienteService: ClienteService,
               public formBuilder: FormBuilder,
+              public dialogService: DialogService,
               public router: Router) {
                 this.searchForm = this.formBuilder.group({
                   searchString:['']
@@ -58,7 +61,18 @@ export class ClientesComponent implements OnInit {
   }
 
   public remover(id: number) {
-    this.clienteService.remover(id)
+    this.dialogService.confirmDialog({
+      titulo: 'Atenção',
+      mensagem: 'Tem certeza que quer excluir essa venda?'
+    })
+    .pipe(
+      untilDestroyed(this),
+      tap(res => {
+        if(res){
+          this.clienteService.remover(id).subscribe();
+        }
+      })
+    )
     .subscribe();
   }
 }
