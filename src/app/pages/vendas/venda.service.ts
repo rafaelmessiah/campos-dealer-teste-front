@@ -62,5 +62,17 @@ export class VendaService {
     )
   }
 
+  public remover(id: number){
+    return this.http.delete<boolean>(`${API_URL}/venda/${id}`)
+    .pipe(
+      take(1),
+      tap(() => this.removerDoSubject(id))
+    )
+  }
+
+  private removerDoSubject(id: number){
+    let vendas = this._vendas.getValue().filter(p => p.idVenda != id)
+    this._vendas.next(vendas);
+  }
   
 }

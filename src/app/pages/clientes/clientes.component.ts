@@ -15,7 +15,7 @@ export class ClientesComponent implements OnInit {
 
   public clientes: Cliente[] = [];
   public searchForm: FormGroup;
-  public colunas: string[] = ['id', 'nome', 'cidade'];
+  public colunas: string[] = ['id', 'nome', 'cidade', 'actions'];
 
   constructor(public clienteService: ClienteService,
               public formBuilder: FormBuilder,
@@ -40,6 +40,14 @@ export class ClientesComponent implements OnInit {
     return this.searchForm.controls['searchString'].value
   }
 
+  toCadastrar(){
+    this.router.navigate(['/clientes/cadastrar'])
+  }
+
+  toEditar(id: number) {
+    this.router.navigate([`/clientes/editar/${id}`])
+  }
+
   public search(){
     if(this.getSearch() != ''){
       this.clienteService.buscar(this.getSearch()).subscribe();
@@ -49,7 +57,8 @@ export class ClientesComponent implements OnInit {
     }
   }
 
-  toCadastrar(){
-    this.router.navigate(['/clientes/cadastrar'])
+  public remover(id: number) {
+    this.clienteService.remover(id)
+    .subscribe();
   }
 }

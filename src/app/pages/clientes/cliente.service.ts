@@ -62,4 +62,17 @@ constructor(private http: HttpClient) { }
       tap(cliente => this._cliente.next(cliente))
     )
   }
+
+  public remover(id: number){
+    return this.http.delete<boolean>(`${API_URL}/cliente/${id}`)
+    .pipe(
+      take(1),
+      tap(() => this.removerDoSubject(id))
+    )
+  }
+
+  private removerDoSubject(id: number){
+    let clientes = this._clientes.getValue().filter(p => p.idCliente != id)
+    this._clientes.next(clientes);
+  }
 }

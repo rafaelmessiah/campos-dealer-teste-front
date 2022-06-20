@@ -15,8 +15,7 @@ export class VendasComponent implements OnInit {
 
   public vendas: Venda[] = []
   public searchForm: FormGroup;
-  public colunas: string[] =['id', 'cliente', 'produto', 'quantidade', 'vlrUnitario', 'vlrTotal', 'dthVenda']
-  public dataSource = new MatTableDataSource
+  public colunas: string[] =['id', 'cliente', 'produto', 'quantidade', 'vlrUnitario', 'vlrTotal', 'dthVenda', 'actions']
 
   constructor(public vendaService: VendaService,
               public formBuilder: FormBuilder,
@@ -41,6 +40,14 @@ export class VendasComponent implements OnInit {
     return this.searchForm.controls['searchString'].value
   }
 
+  toCadastrar(){
+    this.router.navigate(['/vendas/cadastrar'])
+  }
+
+  toEditar(id: number) {
+    this.router.navigate([`/vendas/editar/${id}`])
+  }
+
   public search(){
     if(this.getSearch() != ''){
       this.vendaService.buscar(this.getSearch()).subscribe();
@@ -50,7 +57,8 @@ export class VendasComponent implements OnInit {
     }
   }
 
-  toCadastrar(){
-    this.router.navigate(['/vendas/cadastrar'])
+  public remover(id: number) {
+    this.vendaService.remover(id)
+    .subscribe();
   }
 }

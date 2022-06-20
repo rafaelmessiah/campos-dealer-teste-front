@@ -42,7 +42,15 @@ export class ProdutosComponent implements OnInit {
     return this.searchForm.controls['searchString'].value
   }
 
-  public search(){
+  toCadastrar() {
+    this.router.navigate(['/produtos/cadastrar'])
+  }
+
+  toEditar(id: number) {
+    this.router.navigate([`/produtos/editar/${id}`])
+  }
+  
+  public search() {
     if(this.getSearch() != ''){
       this.produtoService.buscar(this.getSearch()).subscribe();
     }
@@ -51,7 +59,8 @@ export class ProdutosComponent implements OnInit {
     }
   }
 
-  toCadastrar(){
-    this.router.navigate(['/produtos/cadastrar'])
+  public remover(id: number) {
+    this.produtoService.remover(id)
+    .subscribe();
   }
 }

@@ -66,11 +66,16 @@ export class ProdutoService {
     )
   }
 
-  public remover(id: number,){
+  public remover(id: number){
     return this.http.delete<boolean>(`${API_URL}/produto/${id}`)
     .pipe(
       take(1),
-      tap(() => this._produtos.getValue().filter(p => p.idProduto != id))
+      tap(() => this.removerDoSubject(id))
     )
+  }
+
+  private removerDoSubject(id: number){
+    let produtos = this._produtos.getValue().filter(p => p.idProduto != id)
+    this._produtos.next(produtos);
   }
 }

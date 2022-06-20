@@ -37,6 +37,18 @@
         <td mat-cell *matCellDef="let produto">{{produto.vlrUnitario | currency}}</td>
       </ng-container>
 
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let produto">
+          <button mat-icon-button color="accent" (click)="toEditar(produto.idProduto)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="remover(produto.idProduto)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
       <tr mat-header-row *matHeaderRowDef="colunas"></tr>
       <tr mat-row *matRowDef="let row; columns: colunas;"></tr>
 
