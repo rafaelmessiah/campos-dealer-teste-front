@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Cliente } from '../../models/cliente.model';
 import { BehaviorSubject, take, tap } from 'rxjs';
 import { ClienteDto } from '../../models/dto/cliente-dto.model';
@@ -33,6 +33,17 @@ constructor(private http: HttpClient) { }
     return this.http.post<Cliente>(`${API_URL}/cliente`, clienteDto)
     .pipe(
       take(1),
+    )
+  }
+
+  public buscar(searchString: string){
+    const params = new HttpParams()
+    .set('searchString', searchString)
+
+    return this.http.get<Cliente[]>(`${API_URL}/cliente`, { params } )
+    .pipe(
+      take(1),
+      tap(clientes => this._clientes.next(clientes))
     )
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../../models/cliente.model';
 import { ClienteService } from './cliente.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @UntilDestroy()
 @Component({
@@ -12,10 +13,15 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 export class ClientesComponent implements OnInit {
 
   public clientes: Cliente[] = [];
-
+  public searchForm: FormGroup;
   public colunas: string[] = ['id', 'nome', 'cidade'];
 
-  constructor(public clienteService: ClienteService) { }
+  constructor(public clienteService: ClienteService,
+              public formBuilder: FormBuilder) {
+                this.searchForm = this.formBuilder.group({
+                  searchString:['']
+                });
+               }
 
   ngOnInit() {
     //Subscribe na Lista de Clientes
@@ -28,4 +34,16 @@ export class ClientesComponent implements OnInit {
     this.clienteService.listar().subscribe();
   }
 
+  getSearch() {
+    return this.searchForm.controls['searchString'].value
+  }
+
+  public search(){
+    if(this.getSearch() != ''){
+      this.clienteService.buscar(this.getSearch()).subscribe();
+    }
+    else{
+      this.clienteService.listar().subscribe();
+    }
+  }
 }
