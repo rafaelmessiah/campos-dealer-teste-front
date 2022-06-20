@@ -19,14 +19,14 @@ export class ProdutosComponent implements OnInit {
   constructor(public produtoService: ProdutoService) { }
 
   ngOnInit() {
-    //Subscribe na Lista de Produtos
+    //Subscribe na lista de produtos
     this.produtoService.produtos$
     .pipe(
       untilDestroyed(this)
     )
-    .subscribe(produtos => this.produtos = produtos);
+    .subscribe(produtos => this.produtos = produtos)
 
-    this.produtoService.listar();
+    this.produtoService.listar().subscribe();
   }
 
 }

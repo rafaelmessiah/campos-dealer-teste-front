@@ -12,4 +12,25 @@
     >h1.title{
         font: 20px;
     }
+
+    .form-container{
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+
+        .flex-item{
+            width: 75%;
+        }
+    }
+
+    .btn-row{
+        display: flex;
+        flex-direction: row;
+
+        justify-content: center;
+
+    }
+
+   
 }

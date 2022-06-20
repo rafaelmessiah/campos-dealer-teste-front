@@ -6,7 +6,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
-import { DetalheComponent } from './detalhe/detalhe.component';
+import { ProdutoEditarComponent } from './produto-editar/produto-editar.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ProdutoCadastrarComponent } from './produto-cadastrar/produto-cadastrar.component';
 
 @NgModule({
   imports: [
@@ -15,17 +17,22 @@ import { DetalheComponent } from './detalhe/detalhe.component';
     MatIconModule,
     MatButtonModule,
     MatTableModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       {
         path:'',
         component:ProdutosComponent
       },
       {
-        path:':id',
-        component:DetalheComponent
+        path:'editar/:id',
+        component:ProdutoEditarComponent
+      },
+      {
+        path:'cadastrar',
+        component:ProdutoCadastrarComponent
       }
     ])
   ],
-  declarations: [ProdutosComponent, DetalheComponent]
+  declarations: [ProdutosComponent, ProdutoEditarComponent, ProdutoCadastrarComponent]
 })
 export class ProdutosModule { }

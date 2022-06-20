@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, take, tap } from 'rxjs';
+import { BehaviorSubject, catchError, take, tap } from 'rxjs';
 import { Produto } from '../../models/produto.model';
 import { environment } from '../../../environments/environment';
 import { ProdutoDto } from '../../models/dto/produto-dto.model';
@@ -23,46 +23,34 @@ export class ProdutoService {
   /**
    * Métodos Privados
    */
-  private _listar(){
-    this.http.get<Produto[]>(`${API_URL}/produto`)
+  public listar(){
+    return this.http.get<Produto[]>(`${API_URL}/produto`)
     .pipe(
       take(1),
       tap(produtos => this._produtos.next(produtos))
     )
-    .subscribe()
   }
 
-  private _cadastrar(produtoDto: ProdutoDto){
-    this.http.post<Produto>(`${API_URL}/produto`, produtoDto)
+  public cadastrar(produtoDto: ProdutoDto){
+    return this.http.post<Produto>(`${API_URL}/produto`, produtoDto)
     .pipe(
       take(1),
     )
-    .subscribe()
   }
 
-  private _obter(id: number){
-    this.http.get<Produto>(`${API_URL}/produto/${id}`)
-    .pipe(
-      take(1),
-      tap(produto => this._produto.next(produto))
-    )
-    .subscribe()
-  }
-
-  private _editar(id: number, produtoDto: ProdutoDto){
-    this.http.put<Produto>(`${API_URL}/produto/${id}`, produtoDto)
+  public obter(id: number){
+    return this.http.get<Produto>(`${API_URL}/produto/${id}`)
     .pipe(
       take(1),
       tap(produto => this._produto.next(produto))
     )
-    .subscribe()
-  }
-  
-  /**
-   * Métodos Publicos
-   */
-  public listar(){
-    return this._listar();
   }
 
+  public editar(id: number, produtoDto: ProdutoDto){
+    return this.http.put<Produto>(`${API_URL}/produto/${id}`, produtoDto)
+    .pipe(
+      take(1),
+      tap(produto => this._produto.next(produto))
+    )
+  }
 }
