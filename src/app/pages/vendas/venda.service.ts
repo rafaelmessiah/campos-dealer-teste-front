@@ -3,8 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, take, tap } from 'rxjs';
 import { Venda } from '../../models/venda.model';
-import { CadastrarVendaDto } from '../../models/dto/venda/cadastrar-venda.model';
-import { EditarVendaDto } from '../../models/dto/venda/editar-venda.model';
+import { VendaDto } from 'src/app/models/dto/venda-dto.model';
 
 const API_URL = environment.apiUrl;
 
@@ -20,50 +19,35 @@ export class VendaService {
   public venda$ = this._venda.asObservable();
 
   constructor(private http: HttpClient) { }
-
-  /**
-   * Métodos Privados
-   */
-   private _listar(){
-    this.http.get<Venda[]>(`${API_URL}/venda`)
+  
+  public listar(){
+    return this.http.get<Venda[]>(`${API_URL}/venda`)
     .pipe(
       take(1),
       tap(vendas => this._vendas.next(vendas))
     )
-    .subscribe()
   }
 
-  private _cadastrar(cadastrarVendaDto: CadastrarVendaDto){
-    this.http.post<Venda>(`${API_URL}/venda`, cadastrarVendaDto)
+  public cadastrar(vendaDto: VendaDto){
+    return this.http.post<Venda>(`${API_URL}/venda`, vendaDto)
     .pipe(
       take(1),
     )
-    .subscribe()
   }
 
-  private _obter(id: number){
-    this.http.get<Venda>(`${API_URL}/venda/${id}`)
-    .pipe(
-      take(1),
-      tap(venda => this._venda.next(venda))
-    )
-    .subscribe()
-  }
-
-  private _editar(id: number, editarVendaDto: EditarVendaDto){
-    this.http.put<Venda>(`${API_URL}/produto/${id}`, editarVendaDto)
+  public obter(id: number){
+    return this.http.get<Venda>(`${API_URL}/venda/${id}`)
     .pipe(
       take(1),
       tap(venda => this._venda.next(venda))
     )
-    .subscribe()
   }
 
-  /**
-   * Métodos Publicos
-   */
-   public listar(){
-    return this._listar();
+  public editar(id: number, vendaDto: VendaDto){
+    return this.http.put<Venda>(`${API_URL}/venda/${id}`, vendaDto)
+    .pipe(
+      take(1),
+      tap(venda => this._venda.next(venda))
+    )
   }
-
 }

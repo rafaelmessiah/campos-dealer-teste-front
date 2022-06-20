@@ -1,0 +1,39 @@
+<section class="root-content">
+  <div class="container">
+    <h1 class="title">
+      Venda Nº {{venda?.idVenda}}
+    </h1>
+    
+    <form [formGroup]="editarVendaForm" (submit)="onSubmit()">
+      <div class="form-container">
+        <mat-form-field appearance="outline" class="flex-item">
+          <mat-label>Cliente</mat-label>
+          <mat-select formControlName="idCliente">
+            <mat-option *ngFor="let cliente of clientes" [value]="cliente.idCliente">
+              {{cliente?.nmCliente}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="flex-item">
+          <mat-label>Produto</mat-label>
+          <mat-select formControlName="idProduto">
+            <mat-option *ngFor="let produto of produtos" [value]="produto.idProduto">
+              {{produto?.dscProduto}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline" class="flex-item">
+          <mat-label>Qtde. Produto</mat-label>
+          <input matInput type="number" formControlName="qtdVenda">
+        </mat-form-field>
+      </div>
+    </form>
+
+    <div class="btn-row">
+      <button mat-raised-button color="primary" (click)="onSubmit()">Salvar Alterações</button>
+    </div>
+
+  </div>
+</section>

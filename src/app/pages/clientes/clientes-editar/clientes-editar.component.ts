@@ -56,9 +56,9 @@ export class ClientesEditarComponent implements OnInit {
     this.editar(this.editarClienteForm.value)
   }
 
-  public editar(cleinteDto: ClienteDto){
+  public editar(clienteDto: ClienteDto){
     if(this.cliente){
-      this.clienteService.editar(this.cliente?.idCliente, cleinteDto)
+      this.clienteService.editar(this.cliente?.idCliente, clienteDto)
       .pipe(
         untilDestroyed(this)
       )

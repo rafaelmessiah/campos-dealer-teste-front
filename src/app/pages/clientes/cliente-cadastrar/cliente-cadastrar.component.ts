@@ -14,8 +14,7 @@ export class ClienteCadastrarComponent implements OnInit {
   public cadastrarClienteForm: FormGroup;
 
   constructor(private clienteService: ClienteService,
-              private formBuilder: FormBuilder,
-              private route: ActivatedRoute) {
+              private formBuilder: FormBuilder) {
                 this.cadastrarClienteForm = this.formBuilder.group({
                   nome:['', [Validators.required]],
                   cidade:['', [Validators.required]]

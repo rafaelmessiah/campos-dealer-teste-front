@@ -6,6 +6,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { VendaCadastrarComponent } from './venda-cadastrar/venda-cadastrar.component';
+import { VendaEditarComponent } from './venda-editar/venda-editar.component';
 
 @NgModule({
   imports: [
@@ -14,13 +18,24 @@ import { RouterModule } from '@angular/router';
     MatIconModule,
     MatButtonModule,
     MatTableModule,
+    MatSelectModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       {
         path:'',
         component:VendasComponent
-      }
+      },
+      {
+        path:'cadastrar',
+        component:VendaCadastrarComponent
+      },
+      {
+        path:'editar/:id',
+        component:VendaEditarComponent
+      },
+      
     ])
   ],
-  declarations: [VendasComponent]
+  declarations: [VendasComponent, VendaCadastrarComponent, VendaEditarComponent]
 })
 export class VendasModule { }

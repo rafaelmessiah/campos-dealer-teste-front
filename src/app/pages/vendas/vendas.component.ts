@@ -24,7 +24,7 @@ export class VendasComponent implements OnInit {
     )
     .subscribe(vendas => this.vendas = vendas);
 
-    this.vendaService.listar();
+    this.vendaService.listar().subscribe()
   }
 
 }
