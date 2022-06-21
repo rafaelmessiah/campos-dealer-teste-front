@@ -17,6 +17,7 @@ export class ClientesComponent implements OnInit {
 
   public clientes: Cliente[] = [];
   public searchForm: FormGroup;
+  public isLoading: boolean = false;
   public colunas: string[] = ['id', 'nome', 'cidade', 'actions'];
 
   constructor(public clienteService: ClienteService,
@@ -77,8 +78,11 @@ export class ClientesComponent implements OnInit {
   }
 
   public obterDadosExternos(){
+    this.isLoading = true;
     this.clienteService.obterDadosExternos()
-    .subscribe()
+    .subscribe(
+      () => this.isLoading = false
+    )
 
     this.clienteService.listar().subscribe()
   }

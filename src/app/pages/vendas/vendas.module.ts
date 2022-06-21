@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { VendaCadastrarComponent } from './venda-cadastrar/venda-cadastrar.component';
 import { VendaEditarComponent } from './venda-editar/venda-editar.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSelectModule,
     MatPaginatorModule,
     ReactiveFormsModule,
+    MatProgressSpinnerModule,
     RouterModule.forChild([
       {
         path:'',

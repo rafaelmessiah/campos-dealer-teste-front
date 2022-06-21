@@ -9,6 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ClienteCadastrarComponent } from './cliente-cadastrar/cliente-cadastrar.component';
 import { ClientesEditarComponent } from './clientes-editar/clientes-editar.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   imports: [
@@ -18,6 +20,8 @@ import { ClientesEditarComponent } from './clientes-editar/clientes-editar.compo
     MatTableModule,
     MatButtonModule,
     ReactiveFormsModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
     RouterModule.forChild([
       {
         path:'',

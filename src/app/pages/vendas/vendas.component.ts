@@ -16,6 +16,7 @@ import { switchMap, tap } from 'rxjs';
 export class VendasComponent implements OnInit {
 
   public vendas: Venda[] = []
+  public isLoading: boolean = false;
   public searchForm: FormGroup;
   public colunas: string[] =['id', 'cliente', 'produto', 'quantidade', 'vlrUnitario', 'vlrTotal', 'dthVenda', 'actions']
 
@@ -77,8 +78,11 @@ export class VendasComponent implements OnInit {
   }
 
   public obterDadosExternos(){
+    this.isLoading = true;
     this.vendaService.obterDadosExternos()
-    .subscribe()
+    .subscribe(
+      () => this.isLoading = false
+    )
 
     this.vendaService.listar().subscribe()
   }

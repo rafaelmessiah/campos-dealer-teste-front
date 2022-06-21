@@ -5,6 +5,8 @@
       Clientes
     </h1>
 
+    <mat-spinner *ngIf="isLoading" class="center" color="accent"></mat-spinner>
+
     <div class="options">
       <button mat-raised-button color="primary" class="btn" (click)="toCadastrar()">
         Adicionar
