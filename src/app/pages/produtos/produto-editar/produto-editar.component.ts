@@ -24,7 +24,7 @@ export class ProdutoEditarComponent implements OnInit {
               private route: ActivatedRoute) {
                 this.editarForm = this.formBuilder.group({
                   descricao:['', [Validators.required]],
-                  valorUnitario:['', [Validators.required]]
+                  valorUnitario:['', [Validators.required, Validators.min(1)]]
                 })
                }
 

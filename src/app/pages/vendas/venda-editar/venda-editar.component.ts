@@ -33,7 +33,7 @@ export class VendaEditarComponent implements OnInit {
                 this.editarVendaForm = this.formBuilder.group({
                   idCliente:['', [Validators.required]],
                   idProduto:['', [Validators.required]],
-                  qtdVenda:['',[Validators.required]]
+                  qtdVenda:['',[Validators.required], Validators.min(1)]
                 })
               }
 

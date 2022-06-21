@@ -21,7 +21,7 @@ export class ProdutoCadastrarComponent implements OnInit {
               private route: ActivatedRoute) {
                 this.cadastrarProdutoForm = this.formBuilder.group({
                   descricao:['', [Validators.required]],
-                  valorUnitario:['', [Validators.required]]
+                  valorUnitario:['', [Validators.required, Validators.min(1)]]
                 })
               }
 

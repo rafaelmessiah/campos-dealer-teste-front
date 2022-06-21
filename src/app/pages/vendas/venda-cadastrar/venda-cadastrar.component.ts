@@ -29,7 +29,7 @@ export class VendaCadastrarComponent implements OnInit {
                 this.cadastrarVendaForm = this.formBuilder.group({
                   idCliente:['', [Validators.required]],
                   idProduto:['', [Validators.required]],
-                  qtdVenda:['',[Validators.required]]
+                  qtdVenda:['',[Validators.required, Validators.min(1)]]
                 })
               }
 
