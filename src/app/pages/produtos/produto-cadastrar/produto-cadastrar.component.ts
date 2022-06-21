@@ -40,7 +40,7 @@ export class ProdutoCadastrarComponent implements OnInit {
     this.produtoService.cadastrar(produtoDto)
     .subscribe({
       next: () => this.router.navigate(['/produtos']),
-      error: err => console.log('erro ao cadastra produto')
+      error: err => console.log('Erro ao cadastrar produto')
     })
   }
 }

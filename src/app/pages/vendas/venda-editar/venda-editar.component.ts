@@ -9,7 +9,7 @@ import { ProdutoService } from '../../produtos/produto.service';
 import { VendaService } from '../venda.service';
 import { map, tap, switchMap } from 'rxjs';
 import { VendaDto } from '../../../models/dto/venda-dto.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @UntilDestroy()
 @Component({
@@ -28,6 +28,7 @@ export class VendaEditarComponent implements OnInit {
               private produtoService: ProdutoService,
               private clienteService: ClienteService,
               private route: ActivatedRoute,
+              private router: Router,
               private formBuilder: FormBuilder) {
                 this.editarVendaForm = this.formBuilder.group({
                   idCliente:['', [Validators.required]],
@@ -91,7 +92,7 @@ export class VendaEditarComponent implements OnInit {
         untilDestroyed(this)
       )
       .subscribe({
-        next: venda => this.venda = venda,
+        next: () => this.router.navigate(['/vendas']),
         error: err => console.log(err)
       })
     }

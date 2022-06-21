@@ -63,7 +63,7 @@ export class ProdutosComponent implements OnInit {
   public remover(id: number) {
     this.dialogService.confirmDialog({
       titulo: 'Atenção',
-      mensagem: 'Tem certeza que quer excluir essa venda?'
+      mensagem: 'Tem certeza que quer excluir esse produto?'
     })
     .pipe(
       untilDestroyed(this),

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { map, switchMap, tap } from 'rxjs';
 import { ProdutoDto } from 'src/app/models/dto/produto-dto.model';
@@ -20,6 +20,7 @@ export class ProdutoEditarComponent implements OnInit {
 
   constructor(private produtoService: ProdutoService,
               private formBuilder: FormBuilder,
+              private router: Router,
               private route: ActivatedRoute) {
                 this.editarForm = this.formBuilder.group({
                   descricao:['', [Validators.required]],
@@ -66,7 +67,7 @@ export class ProdutoEditarComponent implements OnInit {
         untilDestroyed(this)
       )
       .subscribe({
-        next: produto => this.produto = produto,
+        next: () => this.router.navigate(['/clientes']),
         error: err => console.log(err)
       })
     }

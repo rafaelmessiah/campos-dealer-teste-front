@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Cliente } from 'src/app/models/cliente.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClienteService } from '../cliente.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { map, tap, switchMap } from 'rxjs';
 import { ClienteDto } from '../../../models/dto/cliente-dto.model';
@@ -20,6 +20,7 @@ export class ClientesEditarComponent implements OnInit {
 
   constructor(private clienteService: ClienteService,
               private formBuilder: FormBuilder,
+              private router: Router,
               private route: ActivatedRoute) { 
                 this.editarClienteForm = this.formBuilder.group({
                   nome:['', [Validators.required]],
@@ -63,7 +64,7 @@ export class ClientesEditarComponent implements OnInit {
         untilDestroyed(this)
       )
       .subscribe({
-        next: cliente => this.cliente = cliente,
+        next: () => this.router.navigate(['/clientes']),
         error: err => console.log(err)
       })
     }
