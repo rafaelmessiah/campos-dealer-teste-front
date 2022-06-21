@@ -1,16 +1,18 @@
 <section class="root-content">
   <div class="container">
-
-    <section class="top">
-
-    </section>
     <h1 class="title">
       Vendas
     </h1>
 
-    <button mat-raised-button color="primary" class="btn" (click)="toCadastrar()">
-      Adicionar
-    </button>
+    <div class="options">
+      <button mat-raised-button color="primary" class="btn" (click)="toCadastrar()">
+        Adicionar
+      </button>
+  
+      <button mat-raised-button color="accent" class="btn" (click)="obterDadosExternos()">
+        Carregar dados Externos
+      </button>
+    </div>
 
     <form [formGroup]="searchForm">
       <mat-form-field appearance="fill" style="width: 100%;">

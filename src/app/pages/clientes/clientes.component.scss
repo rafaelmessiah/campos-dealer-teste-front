@@ -37,4 +37,11 @@
         margin-bottom: 20px;
     }
 
+    .options{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+
+        justify-content: end;
+    }
 }

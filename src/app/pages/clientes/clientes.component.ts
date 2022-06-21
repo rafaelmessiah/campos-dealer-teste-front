@@ -75,4 +75,11 @@ export class ClientesComponent implements OnInit {
     )
     .subscribe();
   }
+
+  public obterDadosExternos(){
+    this.clienteService.obterDadosExternos()
+    .subscribe()
+
+    this.clienteService.listar().subscribe()
+  }
 }

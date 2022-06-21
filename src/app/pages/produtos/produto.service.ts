@@ -74,6 +74,13 @@ export class ProdutoService {
     )
   }
 
+  public obterDadosExternos(){
+    return this.http.get(`${API_URL}/produto/ObterDadosExternos/`)
+    .pipe(
+      take(1),
+    )
+  }
+
   private removerDoSubject(id: number){
     let produtos = this._produtos.getValue().filter(p => p.idProduto != id)
     this._produtos.next(produtos);

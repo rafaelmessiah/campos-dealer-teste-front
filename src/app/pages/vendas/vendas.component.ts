@@ -75,4 +75,11 @@ export class VendasComponent implements OnInit {
     )
     .subscribe();
   }
+
+  public obterDadosExternos(){
+    this.vendaService.obterDadosExternos()
+    .subscribe()
+
+    this.vendaService.listar().subscribe()
+  }
 }

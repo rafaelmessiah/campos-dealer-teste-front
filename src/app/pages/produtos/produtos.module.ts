@@ -10,6 +10,7 @@ import { ProdutoEditarComponent } from './produto-editar/produto-editar.componen
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProdutoCadastrarComponent } from './produto-cadastrar/produto-cadastrar.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatTableModule,
     ReactiveFormsModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
     RouterModule.forChild([
       {
         path:'',

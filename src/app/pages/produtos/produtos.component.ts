@@ -18,6 +18,7 @@ export class ProdutosComponent implements OnInit {
   public produtos: Produto[] = []
   public searchForm: FormGroup;
   public colunas: string[] = ['id', 'descricao', 'valor', 'actions']
+  public isLoading: boolean = false;
 
   constructor(public produtoService: ProdutoService,
               public formBuilder: FormBuilder,
@@ -74,5 +75,15 @@ export class ProdutosComponent implements OnInit {
       })
     )
     .subscribe();
+  }
+
+  public obterDadosExternos(){
+    this.isLoading = true;
+    this.produtoService.obterDadosExternos()
+    .subscribe(
+      () => this.isLoading = false
+    )
+
+    this.produtoService.listar().subscribe()
   }
 }

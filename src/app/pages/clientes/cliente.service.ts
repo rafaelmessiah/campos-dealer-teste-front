@@ -75,4 +75,11 @@ constructor(private http: HttpClient) { }
     let clientes = this._clientes.getValue().filter(p => p.idCliente != id)
     this._clientes.next(clientes);
   }
+
+  public obterDadosExternos(){
+    return this.http.get(`${API_URL}/cliente/ObterDadosExternos/`)
+    .pipe(
+      take(1),
+    )
+  }
 }

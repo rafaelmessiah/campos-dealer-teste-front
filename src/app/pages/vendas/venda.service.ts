@@ -70,6 +70,13 @@ export class VendaService {
     )
   }
 
+  public obterDadosExternos(){
+    return this.http.get(`${API_URL}/venda/ObterDadosExternos/`)
+    .pipe(
+      take(1),
+    )
+  }
+
   private removerDoSubject(id: number){
     let vendas = this._vendas.getValue().filter(p => p.idVenda != id)
     this._vendas.next(vendas);
