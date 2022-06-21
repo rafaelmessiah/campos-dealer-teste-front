@@ -67,7 +67,7 @@ export class ProdutoEditarComponent implements OnInit {
         untilDestroyed(this)
       )
       .subscribe({
-        next: () => this.router.navigate(['/clientes']),
+        next: () => this.router.navigate(['/produtos']),
         error: err => console.log(err)
       })
     }
