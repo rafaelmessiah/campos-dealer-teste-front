@@ -21,7 +21,7 @@ export class VendaService {
   constructor(private http: HttpClient) { }
   
   public listar(){
-    return this.http.get<Venda[]>(`${API_URL}/venda`)
+    return this.http.get<Venda[]>(`${API_URL}/venda/Listar`)
     .pipe(
       take(1),
       tap(vendas => this._vendas.next(vendas))
@@ -29,14 +29,14 @@ export class VendaService {
   }
 
   public cadastrar(vendaDto: VendaDto){
-    return this.http.post<Venda>(`${API_URL}/venda`, vendaDto)
+    return this.http.post<Venda>(`${API_URL}/venda/Cadastrar`, vendaDto)
     .pipe(
       take(1),
     )
   }
 
   public obter(id: number){
-    return this.http.get<Venda>(`${API_URL}/venda/${id}`)
+    return this.http.get<Venda>(`${API_URL}/venda/Obter/${id}`)
     .pipe(
       take(1),
       tap(venda => this._venda.next(venda))
@@ -47,7 +47,7 @@ export class VendaService {
     const params = new HttpParams()
     .set('searchString', searchString)
     
-    return this.http.get<Venda[]>(`${API_URL}/venda`, { params })
+    return this.http.get<Venda[]>(`${API_URL}/venda/Buscar`, { params })
     .pipe(
       take(1),
       tap(vendas => this._vendas.next(vendas))
@@ -55,7 +55,7 @@ export class VendaService {
   }
 
   public editar(id: number, vendaDto: VendaDto){
-    return this.http.put<Venda>(`${API_URL}/venda/${id}`, vendaDto)
+    return this.http.put<Venda>(`${API_URL}/venda/Editar/${id}`, vendaDto)
     .pipe(
       take(1),
       tap(venda => this._venda.next(venda))
@@ -63,7 +63,7 @@ export class VendaService {
   }
 
   public remover(id: number){
-    return this.http.delete<boolean>(`${API_URL}/venda/${id}`)
+    return this.http.delete<boolean>(`${API_URL}/venda/Remover/${id}`)
     .pipe(
       take(1),
       tap(() => this.removerDoSubject(id))

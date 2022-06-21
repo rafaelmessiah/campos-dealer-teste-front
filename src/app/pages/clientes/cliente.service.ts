@@ -22,7 +22,7 @@ constructor(private http: HttpClient) { }
   public cliente$ = this._cliente.asObservable();
 
   public listar(){
-    return this.http.get<Cliente[]>(`${API_URL}/cliente`)
+    return this.http.get<Cliente[]>(`${API_URL}/cliente/Listar`)
     .pipe(
       take(1),
       tap(clientes => this._clientes.next(clientes))
@@ -30,7 +30,7 @@ constructor(private http: HttpClient) { }
   }
 
   public cadastrar(clienteDto: ClienteDto){
-    return this.http.post<Cliente>(`${API_URL}/cliente`, clienteDto)
+    return this.http.post<Cliente>(`${API_URL}/cliente/Cadastrar`, clienteDto)
     .pipe(
       take(1),
     )
@@ -40,7 +40,7 @@ constructor(private http: HttpClient) { }
     const params = new HttpParams()
     .set('searchString', searchString)
 
-    return this.http.get<Cliente[]>(`${API_URL}/cliente`, { params } )
+    return this.http.get<Cliente[]>(`${API_URL}/cliente/Buscar`, { params } )
     .pipe(
       take(1),
       tap(clientes => this._clientes.next(clientes))
@@ -48,7 +48,7 @@ constructor(private http: HttpClient) { }
   }
 
   public obter(id: number){
-    return this.http.get<Cliente>(`${API_URL}/cliente/${id}`)
+    return this.http.get<Cliente>(`${API_URL}/cliente/Obter/${id}`)
     .pipe(
       take(1),
       tap(cliente => this._cliente.next(cliente))
@@ -56,7 +56,7 @@ constructor(private http: HttpClient) { }
   }
 
   public editar(id: number, clienteDto: ClienteDto){
-    return this.http.put<Cliente>(`${API_URL}/cliente/${id}`, clienteDto)
+    return this.http.put<Cliente>(`${API_URL}/cliente/Editar/${id}`, clienteDto)
     .pipe(
       take(1),
       tap(cliente => this._cliente.next(cliente))
@@ -64,7 +64,7 @@ constructor(private http: HttpClient) { }
   }
 
   public remover(id: number){
-    return this.http.delete<boolean>(`${API_URL}/cliente/${id}`)
+    return this.http.delete<boolean>(`${API_URL}/cliente/Remover/${id}`)
     .pipe(
       take(1),
       tap(() => this.removerDoSubject(id))

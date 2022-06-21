@@ -25,7 +25,7 @@ export class ProdutoService {
    * Métodos Privados
    */
   public listar(){
-    return this.http.get<Produto[]>(`${API_URL}/produto`)
+    return this.http.get<Produto[]>(`${API_URL}/produto/Listar`)
     .pipe(
       take(1),
       tap(produtos => this._produtos.next(produtos))
@@ -36,7 +36,7 @@ export class ProdutoService {
     const params = new HttpParams()
     .set('searchString', searchString)
 
-    return this.http.get<Produto[]>(`${API_URL}/produto`, {params})
+    return this.http.get<Produto[]>(`${API_URL}/produto/Buscar`, {params})
     .pipe(
       take(1),
       tap(produtos => this._produtos.next(produtos))
@@ -44,14 +44,14 @@ export class ProdutoService {
   }
 
   public cadastrar(produtoDto: ProdutoDto){
-    return this.http.post<Produto>(`${API_URL}/produto`, produtoDto)
+    return this.http.post<Produto>(`${API_URL}/produto/Cadastrar`, produtoDto)
     .pipe(
       take(1),
     )
   }
 
   public obter(id: number){
-    return this.http.get<Produto>(`${API_URL}/produto/${id}`)
+    return this.http.get<Produto>(`${API_URL}/produto/Obter/${id}`)
     .pipe(
       take(1),
       tap(produto => this._produto.next(produto))
@@ -59,7 +59,7 @@ export class ProdutoService {
   }
 
   public editar(id: number, produtoDto: ProdutoDto){
-    return this.http.put<Produto>(`${API_URL}/produto/${id}`, produtoDto)
+    return this.http.put<Produto>(`${API_URL}/produto/Editar/${id}`, produtoDto)
     .pipe(
       take(1),
       tap(produto => this._produto.next(produto))
@@ -67,7 +67,7 @@ export class ProdutoService {
   }
 
   public remover(id: number){
-    return this.http.delete<boolean>(`${API_URL}/produto/${id}`)
+    return this.http.delete<boolean>(`${API_URL}/produto/Remover/${id}`)
     .pipe(
       take(1),
       tap(() => this.removerDoSubject(id))
